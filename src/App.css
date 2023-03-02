@@ -1,0 +1,19 @@
+body{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  background-color: rgb(242, 247, 250);
+
+}
+
+.logo{
+
+  font-family: 'Playfair Display', serif;
+  color: rgb(81, 81, 81);
+
+}
+
+
