@@ -19,7 +19,7 @@ function Header(props) {
 
                     </div>
                     
-                    <h1 className='logo'>MoneyKeeper</h1>
+                    <a href="/"><h1 className='logo cursor-pointer'>MoneyKeeper</h1></a>
                   
                 </div>
 

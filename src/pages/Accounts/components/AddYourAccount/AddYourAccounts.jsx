@@ -10,11 +10,14 @@ const AddYourAccounts = (props) => {
       
 
   return (
-    <div className={`${props.isOpen  ? 'block' : 'hidden'} m-auto h-auto bg-gray-300 rounded-xl p-1 font-bold text-grey-letter text-lg md:grid md:col-span-2 md:w-1/2`} ref={props.click}>
+    <div className={`${props.isOpen  ? 'block' : 'hidden'} m-auto h-auto bg-gray-300 rounded-xl p-1 font-bold text-grey-letter text-lg md:grid md:col-span-2 md:w-1/2`}>
     <form action="" onSubmit={props.submit}>
         <div className='flex place-content-around w-full border-b border-grey-letter mb-10 py-5'>
-                <div className='w-5 h-5'><img className='w-full h-full' src="" alt="" /></div>
-                <h1>Add your accounts</h1>
+                <div className='flex align-middle place-content-between w-3/4 border border-red-brown'>
+                    <div className='w-8 h-8 md:h-10 md:w-10'><img className='w-full h-full' src="./src/assets/icons8-money-bag-30.png" alt="" /></div>
+                    <h1 className='text-lg'>Add your accounts</h1>
+                </div>
+                <span onClick={() => props.close()} className='rounded-lg border-2 border-red-brown px-2'>X</span>
         </div>
         <div className='flex flex-col px-4'>
             <div className='md:flex md:place-content-between'>

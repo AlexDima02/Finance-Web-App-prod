@@ -28,34 +28,35 @@ const openMenu = () => {
 
 } 
 
-  useEffect(() => {
+// Click outside
+  // useEffect(() => {
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
+  //   return () => {
 
-      document.removeEventListener('click', handleClickOutside);
+  //     document.removeEventListener('click', handleClickOutside);
 
-    };
+  //   };
 
-  });
+  // });
 
-  const click = useRef();
+  // const click = useRef();
 
 
-  const handleClickOutside = (e) => {
+  // const handleClickOutside = (e) => {
       
-      if(!click.current.contains(e.target)){
+  //     if(!click.current.contains(e.target)){
 
-          // console.log('Outside');
-          onClose();
+  //         // console.log('Outside');
+  //         onClose();
           
-      }else{
+  //     }else{
 
-          // console.log('inside');
+  //         // console.log('inside');
           
-      }
-  }
+  //     }
+  // }
   
   function handleNameInputChange(e) {
    
@@ -91,9 +92,9 @@ const openMenu = () => {
   
   
   return (
-    <div className='w-full border-2 border-blue-800 px-8 m-auto min-h-screen md:w-1/2'>
+    <div className='w-full px-8 m-auto min-h-screen md:w-1/2'>
         <div className={`${open ? 'absolute bottom-1/2 top-1/2 right-[50%] left-[0%]  w-full h-max z-10' : 'hidden'}  flex flex-col justify-center align-middle  bg-gray-500 bg-opacity-50 m-auto min-h-screen`}>
-          <AddYourAccounts switchCurrency={accounts.currency} name={handleNameInputChange} type={handleTypeInputChange} ammounts={handleAmmountsInputChange} currency={handleCurrencyInputChange} submit={handleSubmit} click={click} isOpen={open}/>
+          <AddYourAccounts switchCurrency={accounts.currency} name={handleNameInputChange} type={handleTypeInputChange} ammounts={handleAmmountsInputChange} currency={handleCurrencyInputChange} submit={handleSubmit} close={onClose} isOpen={open}/>
         </div>
         <div className='h-auto bg-white rounded-xl p-1 font-bold text-grey-letter text-lg md:grid md:col-span-2'>
             <AddTransactionBtn openMenu={openMenu}/>
