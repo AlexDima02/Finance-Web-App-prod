@@ -20,7 +20,7 @@ function Dashboard(props) {
   //   }
   // }, []);
 
-  // Add data in to the array
+  // Add data in to the array - Transactions
   function addData(data){
 
     // Adds new data at the beginning of the array
@@ -37,7 +37,7 @@ function Dashboard(props) {
       <div className='grid gap-4 grid-cols-1 grid-rows-4 md:grid-rows-3 md:grid-cols-2'>
 
           <Budget accounts={props.accounts} transactions={props.transactions}/>
-          <TotalBalance accounts={props.accounts} transactions={props.transactions}/>
+          <TotalBalance accounts={props.accounts} transactions={props.transactions} addAccounts={props.addAccounts}/>
           <AddExpense onSubmit={addData} accounts={props.accounts} /> 
           <TransactionList accounts={props.accounts} data={props.transactions}/>
           

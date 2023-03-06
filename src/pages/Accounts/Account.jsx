@@ -6,8 +6,8 @@ import { AddYourAccounts } from './components/AddYourAccount/AddYourAccounts';
 
 function Account(props) {
  
-  const account = props.accounts?.map(el => el.account);
- 
+  const account = props.accounts?.map(el => el);
+  console.log(account)
  // Open the add account menu
  const [open, setOpenAccountMenu] = useState(false);
  const onClose = () => setOpenAccountMenu(!open);
@@ -21,7 +21,9 @@ function Account(props) {
     currency: ""
 
 });
- 
+
+console.log(accounts)
+
 const openMenu = () => {
 
     setOpenAccountMenu(!open);
@@ -80,7 +82,7 @@ const openMenu = () => {
   }
 
   function handleSubmit(e) {
-        
+    
     e.preventDefault(); 
     // Take accounts written accounts 
     props.onSubmit({ ...accounts, id: Math.floor(Math.random() * 1000) });
@@ -110,7 +112,7 @@ const openMenu = () => {
                       
                       <h1>{el.name}</h1>
                       <h2>{el.type}</h2>
-                      <p className='text-green-light'>{el.ammounts + el.currency}</p>
+                      <p className='text-green-light'>{el.budget + el.currency}</p>
 
                   </div> 
 
@@ -128,7 +130,7 @@ const openMenu = () => {
                       
                       <h1>{el.name}</h1>
                       <h2>{el.type}</h2>
-                      <p className='text-green-light'>{el.ammounts + el.currency}</p>
+                      <p className='text-green-light'>{el.budget + el.currency}</p>
 
                   </div> 
                  

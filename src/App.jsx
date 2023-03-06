@@ -32,7 +32,8 @@ function App() {
   console.log(transactions);
 
  
-  const [filter, setFilter] = useState([]);
+  const [filteredAccounts, setFilter] = useState([]);
+  console.log(filteredAccounts);
 
   // Create database and follow each change inside of it
   const { data, items } = db;
@@ -42,29 +43,60 @@ function App() {
   
   
 
-  // If every from from the transaction is equal to every name from the accounts object
-  // Subtract from the ammounts property of each account that contains the same name as the transaction, money property
-  // Return the result and pass it as a prop to the accounts in Dashboard and Account components
-  
-
-  // What i want to do:
-  // Vreau sa verific daca doua stive au date care corespund
-  // Daca corespund mai precis name = from
-  // Returneaza true daca nu false
-  // Aceste valori o sa le folosesc in Total Balance unde o sa map prin accounts si daca if este true 
-  // Returneaza acele conturi care au prorpeitatii egale cu tranzactiile doar ca fac diferenta la rezultat
-  // Acolo unde este false afiseaza datele fara a face calculele --> JS nu afiseaza datele in functie de true sau false chiar daca este true
+ 
   
   
-  // If those two are true
-  // Case edge:
-  // Subtract accounts money with transaction money
-  // Return the values into a new array --> Result js dont know to which container to add the values
+  
+  
 
   // Implementation
-  // Take our new array with sums and map through it to put them in the right component 
+    // If every from from the transaction is equal to every name from the accounts object
+    // Subtract from the ammounts property of each account that contains the same name as the transaction, money property
+    // Return the result and pass it as a prop to the accounts in Dashboard and Account components
+  
+       
+  const result = () => allAccounts?.map((acc) => {
+        
+    // Get the accounts equal to their transaction names
+        let cont = null;
+        const countTransactions = [];
+        cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency, type: acc.account.type}
+        allTransactions?.map((transc) => {
+           
+            if(acc.account.name == transc.record.from && acc.account.currency == transc.record.currency){
+                
+
+                const number = parseInt(transc.record.money);
+                countTransactions.push(number);
+                
+                cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency, type: acc.account.type};
+            
+
+            }
+            
+            
+        })
+        
+        return cont;
+
+    })
+
+    const test = result();
+    
+
+  // Make the total of each array and keep the name of the account
+  // We want to make the total budget / 30 days for each account and somehow arrive at an object 
+  const daily = () => test?.filter((element) => element !== null).map((el) => {
+      
+      let cont = null;
+      cont = {name: el.name, total: el.total, budget: el.budget, day: Math.ceil(el.budget / 30), currency: el.currency, type: el.type}
+      return cont;
+
+  })
   
 
+  const dayBudget = daily();
+  console.log(dayBudget)
  
   
   // Get the new data from the account page and keep the old accounts in the array
@@ -106,7 +138,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Dashboard accounts={allAccounts} addTransaction={addTransactions} transactions={allTransactions} />}/>
         <Route exact path='/transaction' element={<Transaction transactions={allTransactions}/>}/>
-        <Route exact path='/account' element={<Account accounts={allAccounts} onSubmit={addAccounts}/>}/>
+        <Route exact path='/account' element={<Account accounts={dayBudget} onSubmit={addAccounts}/>}/>
       </Routes>
     </>
   )

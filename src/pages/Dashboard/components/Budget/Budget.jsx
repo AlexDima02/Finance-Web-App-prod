@@ -6,9 +6,7 @@ const Budget = (props) => {
    
     
     
-
-        
-
+     
    
 
    
@@ -40,7 +38,7 @@ const Budget = (props) => {
     })
 
     const account = result();
-    console.log(account)
+   
 
     // Make the total of each array and keep the name of the account
     // We want to make the total budget / 30 days for each account and somehow arrive at an object 
@@ -54,27 +52,27 @@ const Budget = (props) => {
       
 
     const dayBudget = daily();
-    console.log(dayBudget);
+    console.log(dayBudget)
 
     // Cat mi-a ramas dupa ce am facut buget pe o zi - total = rezultat returnat ziua urmatoare
-    function calculateBudget(){
+    // function calculateBudget(){
 
-        dayBudget?.forEach((budget) => {
-            if(budget.total > budget.day){
+    //     dayBudget?.forEach((budget) => {
+    //         if(budget.total > budget.day){
 
                 
 
 
-            }else if(budget.total < budget.budget){
+    //         }else if(budget.total < budget.budget){
 
                
 
 
-            }
-        });
+    //         }
+    //     });
 
 
-    }
+    // }
         // Daca totalul tranzactiilor depaseste cat cheltuim intr-o zi total > budget
             // Bugetul zilnic va fi calculat pentru urmatoarea zi, insemanand ca se va schimba dupa ce va trece ziua curenta
             // Total tranzactii din ziua curenta va fi scazut din cat ar trebui sa cheltuim pe zi(static) si adunat cu cat cheltuim in mod normal ziua urmatoare (rezultat afisat urmatoarea zi)
@@ -82,7 +80,7 @@ const Budget = (props) => {
             // Total tranzactii din ziua curenta va fi scazut din cat ar trebui sa cheltuim pe zi(static) si si adunat cu cat cheltuim in mod normal ziua urmatoare (rezultat afisat urmatoarea zi)
             // Creat un nou array pt ziua urmatoare
         
-    // calculateBudget();
+    
 
     return (
 
@@ -150,4 +148,4 @@ export {Budget}
 // Rezolva schimbarea simbolului monedei in functie de tranzactie vezi Transaction
 // Rezolva la parametrul "from" valoarea default vezi ModifierMenu
     // Nu apare la option atunci cand iteram prin tranzactiile deja facute
-// Vezi Accounts, oriunde apas apare modular popup
+// Conturile nu se modifica la sectiunea Accounts

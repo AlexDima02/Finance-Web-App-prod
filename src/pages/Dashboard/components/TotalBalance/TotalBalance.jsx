@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 const TotalBalance = (props) => {
-    const [ filter, setFilter ] = useState([])
+    
     let sum = 0;
     const account = props.accounts?.map(el => el.account);
     const transaction = props.transactions?.map(el => el.record);
@@ -35,8 +35,7 @@ const TotalBalance = (props) => {
         })
     
         const test = result();
-        console.log(test)
-
+        
 
     // Make the total of each array and keep the name of the account
     // We want to make the total budget / 30 days for each account and somehow arrive at an object 
@@ -50,7 +49,7 @@ const TotalBalance = (props) => {
       
 
     const dayBudget = daily();
-    console.log(dayBudget)
+    
         
     // Scade pentru fiecare suma cont fiecare suma din tranzactie egala cu acel cont
     // Impinge rezultatul intr-un array care pastreaza doar ultima varianta ca sa nu se copie itemi duplicati  

@@ -59,7 +59,7 @@ const Transaction = (props) => {
        <div className='flex flex-col w-1/3 font-bold text-lg'>
                     
                     <div className='w-7 h-7 object-contain md:w-10 md:h-10'>
-                        <img className='w-full h-full' src="./src/assets/icons8-hospital-insurance-96.png" alt="" />
+                        <img className='w-full h-full' src="img/icons8-hospital-insurance-96.png" alt="" />
                     </div>
 
                     <div className='text-sm md:text-lg'>
