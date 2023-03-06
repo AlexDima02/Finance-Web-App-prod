@@ -81,12 +81,12 @@ function App() {
 
     })
 
-    const test = result();
+    const syncedAccounts = result();
     
 
   // Make the total of each array and keep the name of the account
   // We want to make the total budget / 30 days for each account and somehow arrive at an object 
-  const daily = () => test?.filter((element) => element !== null).map((el) => {
+  const daily = () => syncedAccounts?.filter((element) => element !== null).map((el) => {
       
       let cont = null;
       cont = {name: el.name, total: el.total, budget: el.budget, day: Math.ceil(el.budget / 30), currency: el.currency, type: el.type}
@@ -136,7 +136,7 @@ function App() {
       <Header open={SideBarOpen}/>
       <SideBar status={open}/>
       <Routes>
-        <Route exact path='/' element={<Dashboard accounts={allAccounts} addTransaction={addTransactions} transactions={allTransactions} />}/>
+        <Route exact path='/' element={<Dashboard accounts={dayBudget} addTransaction={addTransactions} transactions={allTransactions} />}/>
         <Route exact path='/transaction' element={<Transaction transactions={allTransactions}/>}/>
         <Route exact path='/account' element={<Account accounts={dayBudget} onSubmit={addAccounts}/>}/>
       </Routes>

@@ -11,15 +11,6 @@ function Dashboard(props) {
   // AddExpense object data - transactions
   const [datas, setData] = useState([]);
   
-  // // Save it in the local storage
-  // useEffect(() => {
-  //   // fires when app component mounts to the DOM
-  //   const storageData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-  //   if (storageData) {
-  //     setData(storageData);
-  //   }
-  // }, []);
-
   // Add data in to the array - Transactions
   function addData(data){
 

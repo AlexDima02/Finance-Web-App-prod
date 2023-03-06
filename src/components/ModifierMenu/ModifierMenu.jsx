@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import RequestPageIcon from '@mui/icons-material/RequestPage';
 import db from '../Database/db';
 
@@ -9,15 +9,17 @@ function ModifierMenu(props) {
    // State 
    const [ changedProperties, setChangedProperties ] = useState({
 
-        currency: '',
-        date: '',
-        from: '',
-        money: '',
-        name: ''
+        currency: props.currency,
+        date: props.date,
+        from: props.from,
+        money: props.money,
+        name: props.name
 
    })
 
    console.log(changedProperties)
+
+   
 
    const handleChangeCurrency = (e) => {
 
@@ -84,13 +86,14 @@ function ModifierMenu(props) {
                     </div>
                     <div id='from' className='flex flex-col mt-10'>
                         <label htmlFor="name">From</label>
-                        <select className='border-2 border-slate-200 px-4' value={props.from} onChange={(e) => handleChangeFrom(e)}  name='name'>
+                        <select className='border-2 border-slate-200 px-4' defaultValue={props.from} onChange={(e) => handleChangeFrom(e)}  name='name'>
 
-                            {props.allData?.map((el) => {
-                                {console.log(el.account)}
-                                <option value={el.account.name}>{el.account.name}</option>
+                            {props.data?.map((el) => (
+                                
+                               
+                                <option value={el.name}>{el.name}</option>
 
-                            })}
+                            ))}
                                 
                         </select>
 

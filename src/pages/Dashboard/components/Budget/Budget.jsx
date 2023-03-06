@@ -5,55 +5,6 @@ import React from 'react';
 const Budget = (props) => {
    
     
-    
-     
-   
-
-   
-
-   const result = () => props.accounts?.map((acc) => {
-        
-    // Get the accounts equal to their transaction names
-        let cont = null;
-        const countTransactions = [];
-        cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency};
-        props.transactions?.map((transc) => {
-           
-            if(acc.account.name == transc.record.from && acc.account.currency == transc.record.currency){
-                
-
-                const number = parseInt(transc.record.money);
-                countTransactions.push(number);
-                
-                cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency};
-            
-
-            }
-            
-
-        })
-        
-        return cont;
-
-    })
-
-    const account = result();
-   
-
-    // Make the total of each array and keep the name of the account
-    // We want to make the total budget / 30 days for each account and somehow arrive at an object 
-    const daily = () => account?.filter((element) => element !== null).map((el) => {
-        
-        let cont = null;
-        cont = {name: el.name, total: el.total, budget: el.budget, day: Math.ceil(el.budget / 30), currency: el.currency}
-        return cont;
-
-    })
-      
-
-    const dayBudget = daily();
-    console.log(dayBudget)
-
     // Cat mi-a ramas dupa ce am facut buget pe o zi - total = rezultat returnat ziua urmatoare
     // function calculateBudget(){
 
@@ -73,9 +24,10 @@ const Budget = (props) => {
 
 
     // }
-        // Daca totalul tranzactiilor depaseste cat cheltuim intr-o zi total > budget
-            // Bugetul zilnic va fi calculat pentru urmatoarea zi, insemanand ca se va schimba dupa ce va trece ziua curenta
-            // Total tranzactii din ziua curenta va fi scazut din cat ar trebui sa cheltuim pe zi(static) si adunat cu cat cheltuim in mod normal ziua urmatoare (rezultat afisat urmatoarea zi)
+        
+    // Daca totalul tranzactiilor depaseste cat cheltuim intr-o zi total > budget    
+        // Bugetul zilnic va fi calculat pentru urmatoarea zi, insemanand ca se va schimba dupa ce va trece ziua curenta
+        // Total tranzactii din ziua curenta va fi scazut din cat ar trebui sa cheltuim pe zi(static) si adunat cu cat cheltuim in mod normal ziua urmatoare (rezultat afisat urmatoarea zi)
         // Daca totalul mai mic decat cheltuiala pe zi total < budget
             // Total tranzactii din ziua curenta va fi scazut din cat ar trebui sa cheltuim pe zi(static) si si adunat cu cat cheltuim in mod normal ziua urmatoare (rezultat afisat urmatoarea zi)
             // Creat un nou array pt ziua urmatoare
@@ -88,7 +40,7 @@ const Budget = (props) => {
             <div>
                 <h1 className='font-bold text-xl pb-4'>Set limit of budget:</h1>
                 <div>
-                    {dayBudget?.map((budget, index) => {
+                    {props.accounts?.map((budget, index) => {
                             {console.log(budget)}
                             return (
                                 <div key={index} className="border border-t-2 pr-4 pl-4 py-5">
@@ -145,7 +97,6 @@ export {Budget}
 
 
 // Probleme 
-// Rezolva schimbarea simbolului monedei in functie de tranzactie vezi Transaction
-// Rezolva la parametrul "from" valoarea default vezi ModifierMenu
-    // Nu apare la option atunci cand iteram prin tranzactiile deja facute
-// Conturile nu se modifica la sectiunea Accounts
+// Selecteaza o valoare implicita la select dropdrown atunci cand vrem sa adaugam o tranzactie vezi AddExpenses
+// Rezolva bug-ul cu delete, atunci cand dam submit sa schimbe tranzactia deja facuta, se activeaza si onChange handler de la delete
+    // vezi Transaction

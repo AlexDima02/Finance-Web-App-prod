@@ -12,14 +12,14 @@ const AddExpense = (props) => {
   const [data, setData] = useState({
     
     id: "",
-    from: "",
+    from: '',
     money: "",
     date: "",
     currency: "",
     name: ""
 
   });
-
+  
   // const [myValue, setMyValue] = useState("Loading...");
   const myRef = useRef(null);
   
@@ -94,12 +94,12 @@ const AddExpense = (props) => {
             <div className='flex flex-col mb-3 text-lg md:flex-col md:place-content-between'>
                 <div className='flex flex-col mb-4 pb-5'>
                     <label htmlFor="from">From</label>
-                    <select onChange={(e) => handleStoreInputChange(e)} className='border-2 border-slate-200 w-1/2' name="" id="">
+                    <select onChange={(e) => handleStoreInputChange(e)} defaultValue={(e) => e.target.value} className='border-2 border-slate-200 w-1/2' name="" id="">
                         {/* <option value='Card'>Card</option>
                         <option value='Bank Account'>Bank account</option> */}
                         {props.accounts?.map((account, index) => (
                             
-                            <option className='selector' key={index} ref={myRef} value={account.account.name} >{account.account.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{account.account.currency}</option>
+                            <option className='selector' key={index} ref={myRef} value={account.name} >{account.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{account.currency}</option>
 
                         ))}
                        

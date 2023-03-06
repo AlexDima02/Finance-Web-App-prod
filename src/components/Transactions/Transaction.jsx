@@ -11,7 +11,7 @@ const Transaction = (props) => {
 
     // Animation state for deleting transactions 
     const [ close, setClose ] = useState(false);
-    const deleteTransc = () => setClose(!close);
+    const deleteTransc = () => {setClose(!close), alert('Sorry for any incovenience but your transaction was not deleted, please have patience until the feature is coming back!')};
 
     // Open transaction modifier menu
     const [ openMenu, setOpenMenu ] = useState(false);
@@ -19,21 +19,12 @@ const Transaction = (props) => {
     console.log(openMenu)
 
     // Currency checker
-    let USDollar = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    });
-    let EURCurrency = new Intl.NumberFormat('en-DE', {
-      style: 'currency',
-      currency: 'EUR',
-    });
-
     const currencies = {
 
       'USD': '$', 
       'EUR': '€',
     }
-
+    
     // Delete every transaction that we click on and has a unique id 
     // We get the id from the TransactionList where we iterate through each record and get the id of each from changing the state from true or false
     // With this in mind we get the id of each transaction that has the state from false to true
@@ -51,8 +42,9 @@ const Transaction = (props) => {
   return (
     <div onTransitionEnd={(e) => {
       
-      deleteTransc();
-      handleDelete(e, props.verify);
+      // deleteTransc();
+      // alert('Your transaction was not deleted but i am working on this feature to be live again. Please have patience!');
+      // handleDelete(e, props.verify);
 
     }} key={props.verify} className={`${close ? 'rotate-12 transition-all opacity-0' : 'rotate-0 transition-all opacity-100'} flex flex-col`}>
       <div className='flex place-content-between border-1 border-slate-200 rounded-xl align-middle shadow-md mb-10 p-5 relative z-20'>
@@ -75,18 +67,18 @@ const Transaction = (props) => {
         <div id='mobile' className='flex flex-col md:flex-row'>
           <div id='price' className='text-sm flex flex-col align-middle place-content-center md:text-lg md:mr-5'>
                       
-                      <h1 className='text-red-300 text-center'>-{props.currency == currencies["USD"] ? USDollar.format(props.money) : EURCurrency.format(props.money)}</h1>
+                      <h1 className='text-red-300 text-center'>-{props.money}{props.currency == "USD" ? currencies['USD'] : currencies['EUR']}</h1>
 
           </div>
           <div className='flex'>
-              <div className='flex flex-col align-middle justify-center mr-5' onClick={() => setClose(!close)}>
+              <div className='flex flex-col align-middle justify-center mr-5' onClick={() => {setClose(!close), alert('Sorry for any incovenience but your transaction was not deleted, please have patience until the feature is coming back!')}}>
 
-                  <DeleteForeverIcon className='border border-red-500' sx={{ fontSize: 30 }}/>
+                  <DeleteForeverIcon sx={{ fontSize: 30 }}/>
 
               </div>
               <div className='flex flex-col align-middle justify-center' onClick={() => popMenu()}>
 
-                  <ChangeCircleIcon className='border border-red-500' sx={{ fontSize: 30 }}/>
+                  <ChangeCircleIcon  sx={{ fontSize: 30 }}/>
 
               </div>
           </div>
