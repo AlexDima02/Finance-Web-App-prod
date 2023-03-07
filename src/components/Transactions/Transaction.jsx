@@ -11,7 +11,7 @@ const Transaction = (props) => {
 
     // Animation state for deleting transactions 
     const [ close, setClose ] = useState(false);
-    const deleteTransc = () => {setClose(!close), alert('Sorry for any incovenience but your transaction was not deleted, please have patience until the feature is coming back!')};
+    const deleteTransc = () => {setClose(!close)};
 
     // Open transaction modifier menu
     const [ openMenu, setOpenMenu ] = useState(false);
@@ -31,6 +31,7 @@ const Transaction = (props) => {
     const handleDelete = async (e, item) => {
 
       console.log(item);
+      deleteTransc();
       db.items.delete(item)
       .then(() => {
           console.log( "Deleted objects");
@@ -42,9 +43,7 @@ const Transaction = (props) => {
   return (
     <div onTransitionEnd={(e) => {
       
-      // deleteTransc();
-      // alert('Your transaction was not deleted but i am working on this feature to be live again. Please have patience!');
-      // handleDelete(e, props.verify);
+      handleDelete(e, props.verify);
 
     }} key={props.verify} className={`${close ? 'rotate-12 transition-all opacity-0' : 'rotate-0 transition-all opacity-100'} flex flex-col`}>
       <div className='flex place-content-between border-1 border-slate-200 rounded-xl align-middle shadow-md mb-10 p-5 relative z-20'>
@@ -71,7 +70,7 @@ const Transaction = (props) => {
 
           </div>
           <div className='flex'>
-              <div className='flex flex-col align-middle justify-center mr-5' onClick={() => {setClose(!close), alert('Sorry for any incovenience but your transaction was not deleted, please have patience until the feature is coming back!')}}>
+              <div className='flex flex-col align-middle justify-center mr-5' onClick={() => {setClose(!close)}}>
 
                   <DeleteForeverIcon sx={{ fontSize: 30 }}/>
 

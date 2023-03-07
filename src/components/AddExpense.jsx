@@ -19,24 +19,7 @@ const AddExpense = (props) => {
     name: ""
 
   });
-  
-  // const [myValue, setMyValue] = useState("Loading...");
-  const myRef = useRef(null);
-  
-  // useEffect(() => {
-  //   setMyValue(myRef?.current.dataset.value);
-  // }, [myRef]);
-  
-
-  const setName = (account) => {
-
-    myRef.current = account;
-    return myRef.current;
-    
-
-
-  }
-
+  console.log(data.from)
 
   // What is happening when we click on AddExpense btn
   // Add data from the inputs inside the array
@@ -77,8 +60,7 @@ const AddExpense = (props) => {
 
     function handleSubmit(e) {
         
-         // prevents browser refresh
-        // trim() gets rid of string whitespace
+         
         props.onSubmit({ ...data, id: Math.floor(Math.random() * 1000) });
         // setData({ ...data });
         // props.change();
@@ -94,12 +76,13 @@ const AddExpense = (props) => {
             <div className='flex flex-col mb-3 text-lg md:flex-col md:place-content-between'>
                 <div className='flex flex-col mb-4 pb-5'>
                     <label htmlFor="from">From</label>
-                    <select onChange={(e) => handleStoreInputChange(e)} defaultValue={(e) => e.target.value} className='border-2 border-slate-200 w-1/2' name="" id="">
+                    <select onChange={(e) => handleStoreInputChange(e)} defaultValue={(e) => setData({from: e.target.value})} className='border-2 border-slate-200 w-1/2' name="" id="">
                         {/* <option value='Card'>Card</option>
                         <option value='Bank Account'>Bank account</option> */}
+                        {console.log(data.from)}
                         {props.accounts?.map((account, index) => (
                             
-                            <option className='selector' key={index} ref={myRef} value={account.name} >{account.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{account.currency}</option>
+                            <option className='selector' key={index} value={account.name} >{account.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{account.currency}</option>
 
                         ))}
                        

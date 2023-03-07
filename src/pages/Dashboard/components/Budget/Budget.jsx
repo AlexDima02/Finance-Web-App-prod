@@ -98,5 +98,4 @@ export {Budget}
 
 // Probleme 
 // Selecteaza o valoare implicita la select dropdrown atunci cand vrem sa adaugam o tranzactie vezi AddExpenses
-// Rezolva bug-ul cu delete, atunci cand dam submit sa schimbe tranzactia deja facuta, se activeaza si onChange handler de la delete
-    // vezi Transaction
+
