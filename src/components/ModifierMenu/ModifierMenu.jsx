@@ -49,8 +49,9 @@ function ModifierMenu(props) {
 
     
    // Change the transaction parameters
-    const handleChange = (param) => {
+    const handleChange = (e, param) => {
         console.log(param)
+        e.preventDefault();
         if(param){
 
             db.items.update(param, {
@@ -124,7 +125,7 @@ function ModifierMenu(props) {
                         </div>
                         
                     </div>
-                    <button type='submit' className='text-white cursor-pointer hover:bg-red-400 hover:transition-colors bg-red-brown mt-10 rounded-lg w-full py-2' onClick={() => handleChange(props.verify)}>Save</button>
+                    <button type='submit' id='change-data' className='text-white cursor-pointer hover:bg-red-400 bg-red-brown mt-10 rounded-lg w-full py-2' onClick={(e) => handleChange(e, props.verify)}>Save</button>
                 </div>  
             </div>
         </div>
