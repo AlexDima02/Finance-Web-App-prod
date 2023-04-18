@@ -16,6 +16,14 @@ It is a web app designed to help every people keep track of their expenses. For 
  - **Filter your transactions**    
  - **Manage your accounts**
  
+ ## **Technologies used:**
+
+ - **React**
+ - **Vite**
+ - **Dexie JS library**
+ - **TailwindCSS**
+ 
+ 
  ## **The structure of the project:**
 
  - **Set limit of budget component is designed to display the total sum of money for each account inserted in the web app and for each of  them it creates a budget for 30 days and updates according to the  expenses.**
