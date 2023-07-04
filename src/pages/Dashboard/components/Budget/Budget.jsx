@@ -38,10 +38,10 @@ const Budget = (props) => {
 
         <div className="h-auto bg-white rounded-xl p-7 font-bold text-grey-letter">
             <div>
-                <h1 className='font-bold text-xl pb-4'>Set limit of budget:</h1>
+                <h1 className='font-bold text-xl pb-4'>NET WORTH:</h1>
                 <div>
                     {props.accounts?.map((budget, index) => {
-                            {console.log(budget)}
+                            
                             return (
                                 <div key={index} className="border border-t-2 pr-4 pl-4 py-5">
                                     <div className="flex flex-col w-1/2 justify-between pt-5">

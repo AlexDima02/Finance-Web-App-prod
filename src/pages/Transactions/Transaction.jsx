@@ -9,7 +9,7 @@ function Transaction(props) {
       <div className='h-auto bg-white rounded-xl p-1 font-bold text-grey-letter text-lg md:grid md:col-span-2'>
             
             {/* <AddTransactionBtn/> */}
-            <TransactionList data={props.transactions}/>
+            <TransactionList accounts={props.accounts} data={props.transactions}/>
             
 
 

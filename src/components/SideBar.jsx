@@ -50,16 +50,16 @@ function SideBar(props) {
 
             </div>
 
-            <div id='settings' className='hover:bg-red-sepia hover:rounded-r-3xl hover:py-2 hover:transition-bg-red-sepia duration-100 mt-14 flex self-center place-content-around min-w-full md:cursor-pointer'>
+            {/* <div id='settings' className='hover:bg-red-sepia hover:rounded-r-3xl hover:py-2 hover:transition-bg-red-sepia duration-100 mt-14 flex self-center place-content-around min-w-full md:cursor-pointer'>
                 
                 <div className=''>
                 <i className="fa-solid fa-gear text-4xl"></i>
                 </div>
                 <p className='font-bold'>Settings</p>
 
-            </div>
+            </div> */}
 
-            <div id='exit' className='hover:bg-red-sepia hover:rounded-r-3xl hover:py-2 hover:transition-bg-red-sepia duration-100 mt-24 flex self-center place-content-around min-w-full md:cursor-pointer'>
+            {/* <div id='exit' className='hover:bg-red-sepia hover:rounded-r-3xl hover:py-2 hover:transition-bg-red-sepia duration-100 mt-24 flex self-center place-content-around min-w-full md:cursor-pointer'>
                 
                 <div className=''>
                   <i className="fa-solid fa-right-from-bracket text-4xl"></i>
@@ -67,7 +67,7 @@ function SideBar(props) {
 
                 <p className='font-bold'>Logout</p>
 
-            </div>
+            </div> */}
             
             
             

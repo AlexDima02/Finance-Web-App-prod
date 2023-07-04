@@ -137,7 +137,7 @@ function App() {
       <SideBar status={open}/>
       <Routes>
         <Route exact path='/' element={<Dashboard accounts={dayBudget} addTransaction={addTransactions} transactions={allTransactions} />}/>
-        <Route exact path='/transaction' element={<Transaction transactions={allTransactions}/>}/>
+        <Route exact path='/transaction' element={<Transaction accounts={dayBudget} transactions={allTransactions}/>}/>
         <Route exact path='/account' element={<Account accounts={dayBudget} onSubmit={addAccounts}/>}/>
       </Routes>
     </>

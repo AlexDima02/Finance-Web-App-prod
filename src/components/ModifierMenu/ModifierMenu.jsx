@@ -4,7 +4,9 @@ import db from '../Database/db';
 
 function ModifierMenu(props) {
     
-    
+    console.log(props.currency)
+    console.log(props.data)
+
 
    // State 
    const [ changedProperties, setChangedProperties ] = useState({
@@ -17,30 +19,31 @@ function ModifierMenu(props) {
 
    })
 
-   console.log(changedProperties)
-
-   
-
-   const handleChangeCurrency = (e) => {
-
-        setChangedProperties({...changedProperties, currency: e.target.value})
-
-   } 
+   console.log(changedProperties.from)
    const handleChangeDate = (e) => {
 
         setChangedProperties({...changedProperties, date: e.target.value})
 
    } 
+
    const handleChangeFrom = (e) => {
 
-        setChangedProperties({...changedProperties, from: e.target.value})
+        let array = [...e.target.value];
+        let currency = array.filter((item, index, array) => index > array.indexOf(',')).join('');
+        console.log(currency)
+        let name = array.filter((item, index, array) => index < array.indexOf(',')).join('');
+        console.log(name)
+
+        setChangedProperties({ ...changedProperties, from: name, currency: currency });
 
    } 
+   
    const handleChangeMoney = (e) => {
 
         setChangedProperties({...changedProperties, money: e.target.value})
 
    } 
+
    const handleChangeName = (e) => {
 
         setChangedProperties({...changedProperties, name: e.target.value})
@@ -50,7 +53,7 @@ function ModifierMenu(props) {
     
    // Change the transaction parameters
     const handleChange = (e, param) => {
-        console.log(param)
+    
         e.preventDefault();
         if(param){
 
@@ -87,12 +90,12 @@ function ModifierMenu(props) {
                     </div>
                     <div id='from' className='flex flex-col mt-10'>
                         <label htmlFor="name">From</label>
-                        <select className='border-2 border-slate-200 px-4' defaultValue={props.from} onChange={(e) => handleChangeFrom(e)}  name='name'>
-
-                            {props.data?.map((el) => (
+                        <select className='border-2 border-slate-200 px-4' onChange={(e) => handleChangeFrom(e)}  name='name'>
+                                
+                            {props.data?.map((el, index) => (
                                 
                                
-                                <option value={el.name}>{el.name}</option>
+                                <option key={index} value={[el.name, el.currency]}>{el.name}&nbsp;&nbsp;&nbsp;{el.currency}</option>
 
                             ))}
                                 
@@ -101,16 +104,9 @@ function ModifierMenu(props) {
 
                     </div>
                     <div id='currency' className='flex flex-col mt-10'>
-                        <select  onChange={(e) => handleChangeCurrency(e)} name="" id="">
 
-                            <option value="EUR">EUR</option>
-                            <option value="USD">USD</option>
-
-
-                        </select>
-
-                        {/* <span className='absolute right-0 bottom-0 z-10 bg-slate-300 px-3 text-grey-letter' id='currency'>EUR</span> */}
-                        <input onChange={(e) => handleChangeMoney(e)} className='relative px-3 mt-2 border-2 border-slate-200' type="number" defaultValue={props.money}/>
+                        <span className='absolute right-5 bottom-[53.3%] z-10 bg-slate-300 px-3 text-grey-letter' id='currency'>{changedProperties.currency}</span>
+                        <input min={0} onChange={(e) => handleChangeMoney(e)} className='relative px-3 mt-2 border-3 border-slate-200' type="number" defaultValue={props.money}/>
 
                     </div>
                     <div id='name' className='flex flex-col mt-10'>

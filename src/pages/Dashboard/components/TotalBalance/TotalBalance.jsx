@@ -42,10 +42,10 @@ const TotalBalance = (props) => {
   
 
     return (
-        <div className='h-auto bg-white rounded-xl p-7 font-bold text-grey-letter'>
-           <div className='font-bold text-lg w-full'>
+        <div className='h-fit bg-white rounded-xl p-7 font-bold text-grey-letter'>
+           <div className='font-bold text-lg w-full px-2'>
                 
-                <h1 className='font-bold text-xl pb-4'>Total Balance</h1>
+                <h1 className='font-bold text-xl pb-4'>TOTAL BALANCE:</h1>
                 <div className='flex justify-between w-1/2'>
                     <span id="USD" className='text-lg text-green-light pr-10'>{totalBalanceUSD(sum)}USD</span>
                     <span id="EUR" className='text-lg text-green-light'>{totalBalanceEUR(sum)}EUR</span>
@@ -53,16 +53,16 @@ const TotalBalance = (props) => {
             </div> 
            <div className='font-bold w-full my-8'>
                 
-                <h1 className='bg-gray-300 rounded-lg p-2 text-xl font-bold'>Bank account</h1>
+                <h1 className='bg-gray-300 rounded-lg py-2 px-2 text-xl font-bold'>Bank account</h1>
                
-                {props.accounts?.filter(el => el.type == 'Bank Account').map((el) => {
+                {props.accounts?.filter(el => el.type == 'Bank Account').map((el, index) => {
                     // If el.name == el.from
                     // Return same thing but subtracting values 
                     // Else return usual data
                     
                     return(
 
-                        <div className='flex place-content-between mt-4'>
+                        <div className='flex place-content-between mt-4 px-2' key={index}>
                         
                             <p className='text-lg'>{el.name}</p>
                             <span className='text-lg text-green-light'>{el.budget + el.currency}</span>
@@ -82,12 +82,12 @@ const TotalBalance = (props) => {
             </div> 
            <div className='font-bold w-full my-8'>
                 
-                <h1 className='bg-gray-300 rounded-lg p-2 text-xl font-bold'>Cards</h1>
-                {props.accounts?.filter(el => el.type == 'Card').map((el) => {
+                <h1 className='bg-gray-300 rounded-lg py-2 px-2 text-xl font-bold'>Cards</h1>
+                {props.accounts?.filter(el => el.type == 'Card').map((el, index) => {
 
                     return(
                     
-                        <div className='flex place-content-between mt-4'>
+                        <div className='flex place-content-between mt-4 px-2' key={index}>
                         
                             <p className='text-lg'>{el.name}</p>
                             <span className='text-lg text-green-light'>{el.budget + el.currency}</span>

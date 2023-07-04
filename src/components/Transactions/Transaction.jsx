@@ -5,9 +5,10 @@ import db from '../Database/db';
 import { ModifierMenu } from '../ModifierMenu/ModifierMenu';
 
 const Transaction = (props) => {
-    console.log(props.verify)
+
+ 
     //Get all accounts for each transaction
-    console.log(props.allData)
+
 
     // Animation state for deleting transactions 
     const [ close, setClose ] = useState(false);
@@ -16,7 +17,7 @@ const Transaction = (props) => {
     // Open transaction modifier menu
     const [ openMenu, setOpenMenu ] = useState(false);
     const popMenu = () => setOpenMenu(!openMenu);
-    console.log(openMenu)
+
 
     // Currency checker
     const currencies = {
@@ -30,7 +31,7 @@ const Transaction = (props) => {
     // With this in mind we get the id of each transaction that has the state from false to true
     const handleDelete = async (e, item) => {
 
-      console.log(item);
+  
       deleteTransc();
       db.items.delete(item)
       .then(() => {
@@ -45,7 +46,7 @@ const Transaction = (props) => {
       
       handleDelete(e, props.verify);
 
-    }} key={props.verify} className={`${close ? 'rotate-12 transition-all opacity-0' : 'rotate-0 transition-all opacity-100'} flex flex-col`}>
+    }} key={props.verify} className={`${close ? 'rotate-12 transition-all opacity-0' : 'rotate-0 transition-all opacity-100'} flex flex-col`} ref={props.refference}>
       <div className='flex place-content-between border-1 border-slate-200 rounded-xl align-middle shadow-md mb-10 p-5 relative z-20'>
        <div className='flex flex-col w-1/3 font-bold text-lg'>
                     
