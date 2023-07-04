@@ -4,16 +4,23 @@ import { AddTransactionBtn } from '../../components/AddTransactionBtn/AddTransac
 import { AddYourAccounts } from './components/AddYourAccount/AddYourAccounts';
 import BankAccountsHeadline from './components/PageSmallDetails/BankAccountsHeadline';
 import CreditAccountsHeadline from './components/PageSmallDetails/CreditAccountsHeadline';
+import db from '../../components/Database/db';
+import MessageError from '../../components/Status/MessageError';
+import Approved from '../../components/Status/Approved';
+import AccountDeletedAlert from './components/AddYourAccount/AccountDeletedAlert';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 function Account(props) {
  
   const account = props.accounts?.map(el => el);
   console.log(account)
+  console.log(props.transactions)
   // Open the add account menu
   const [open, setOpenAccountMenu] = useState(false);
   const [error, setError] = useState(false);
   const [approved, setApproved] = useState(false);
+  const [ deletionAccountStatus, setDeletionAccountStatus ] = useState(false);
   const onClose = () => setOpenAccountMenu(!open);
   console.log(error)
 
@@ -28,45 +35,38 @@ function Account(props) {
   });
 
 
+    const openMenu = () => {
 
-  console.log(accounts)
+        setOpenAccountMenu(!open);
 
-  const openMenu = () => {
+    } 
 
-      setOpenAccountMenu(!open);
+    const handleDeleteAccounts = (e, id) => {
 
-  } 
+  
+      let filtredArray = [...props.transactions, ...props.accounts]
+      const filtredBanks = filtredArray.filter((el,index) => el.record?.from === e.name && el.record?.currency === e.currency);
+      
+      filtredBanks.map((el) => {
 
-  // Click outside
-    // useEffect(() => {
+        return db.items.delete(el.id).then(() => {
+            console.log( "Deleted objects");
+        });
 
-    //   document.addEventListener('mousedown', handleClickOutside);
+      })
 
-    //   return () => {
+      console.log(filtredBanks)
 
-    //     document.removeEventListener('click', handleClickOutside);
+      db.data.delete(id).then(() => {
+        console.log('Account deleted!')
+      })
+      setDeletionAccountStatus(true);
+      setTimeout(() => {
+        setDeletionAccountStatus(false);
+      }, 2000);
 
-    //   };
+    }
 
-    // });
-
-    // const click = useRef();
-
-
-    // const handleClickOutside = (e) => {
-        
-    //     if(!click.current.contains(e.target)){
-
-    //         // console.log('Outside');
-    //         onClose();
-            
-    //     }else{
-
-    //         // console.log('inside');
-            
-    //     }
-    // }
-    
     function handleNameInputChange(e) {
     
       setAccounts({ ...accounts, name: e.target.value });
@@ -98,6 +98,9 @@ function Account(props) {
         setAccounts({ ...accounts });
         setError(false)
         setApproved(true);
+        setTimeout(() => {
+          setApproved(false);
+        }, 1000);
         setAccounts({
       
           id: "",
@@ -112,16 +115,15 @@ function Account(props) {
 
         setApproved(false);
         setError(true)
+        setTimeout(() => {
+          setError(false)
+        }, 1500);
+        
 
       }
-
-      
-      
-
-      
     }
 
-  
+    
   
   return (
     <div className='w-full px-8 m-auto min-h-screen md:w-1/2'>
@@ -134,7 +136,7 @@ function Account(props) {
             
             {account ? <BankAccountsHeadline account={account}/> : null}
 
-            {account?.filter(el => el.type == 'Bank Account').map((el) => {
+            {account?.filter(el => el.type == 'Bank Account').map((el, index) => {
               
             
               return(
@@ -144,6 +146,7 @@ function Account(props) {
                       <h1>{el.name}</h1>
                       <h2>{el.type}</h2>
                       <p className='text-green-light'>{el.budget + el.currency}</p>
+                      <span onClick={(e) => handleDeleteAccounts(el, el.id)} className='cursor-pointer'><DeleteForeverIcon sx={{ fontSize: 25 }}/></span>
 
                   </div> 
 
@@ -151,7 +154,8 @@ function Account(props) {
 
             })}
             {account ? <CreditAccountsHeadline account={account}/> : null}
-            {account?.filter(el => el.type == 'Card').map((el) => {
+
+            {account?.filter(el => el.type == 'Card').map((el, index) => {
 
                  return(
                   
@@ -160,6 +164,7 @@ function Account(props) {
                       <h1>{el.name}</h1>
                       <h2>{el.type}</h2>
                       <p className='text-green-light'>{el.budget + el.currency}</p>
+                      <span onClick={(e) => handleDeleteAccounts(el, el.id)} className='cursor-pointer'><DeleteForeverIcon sx={{ fontSize: 30 }}/></span>
 
                   </div> 
                  
@@ -168,7 +173,7 @@ function Account(props) {
             })}
             
         </div>
-        
+        <AccountDeletedAlert deletionAccountStatus={deletionAccountStatus} />
     </div>
   )
 }

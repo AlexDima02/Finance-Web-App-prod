@@ -14,6 +14,7 @@ import './App.css';
 // Import database library
 import db from './components/Database/db';
 import { useLiveQuery } from "dexie-react-hooks";
+import AccountDeletedAlert from './pages/Accounts/components/AddYourAccount/AccountDeletedAlert';
 
 
 
@@ -57,10 +58,11 @@ function App() {
        
   const result = () => allAccounts?.map((acc) => {
         
+   
     // Get the accounts equal to their transaction names
         let cont = null;
         const countTransactions = [];
-        cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency, type: acc.account.type}
+        cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency, type: acc.account.type, id: acc.id}
         allTransactions?.map((transc) => {
            
             if(acc.account.name == transc.record.from && acc.account.currency == transc.record.currency){
@@ -69,7 +71,7 @@ function App() {
                 const number = parseInt(transc.record.money);
                 countTransactions.push(number);
                 
-                cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency, type: acc.account.type};
+                cont = {total: countTransactions.reduce((total,current) => total + current, 0), name: acc.account.name, budget: acc.account.ammounts - countTransactions.reduce((total,current) => total + current, 0), currency: acc.account.currency, type: acc.account.type, id: acc.id};
             
 
             }
@@ -89,7 +91,7 @@ function App() {
   const daily = () => syncedAccounts?.filter((element) => element !== null).map((el) => {
       
       let cont = null;
-      cont = {name: el.name, total: el.total, budget: el.budget, day: Math.ceil(el.budget / 30), currency: el.currency, type: el.type}
+      cont = {name: el.name, total: el.total, budget: el.budget, day: Math.ceil(el.budget / 30), currency: el.currency, type: el.type, id: el.id}
       return cont;
 
   })
@@ -138,7 +140,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Dashboard accounts={dayBudget} addTransaction={addTransactions} transactions={allTransactions} />}/>
         <Route exact path='/transaction' element={<Transaction accounts={dayBudget} transactions={allTransactions}/>}/>
-        <Route exact path='/account' element={<Account accounts={dayBudget} onSubmit={addAccounts}/>}/>
+        <Route exact path='/account' element={<Account transactions={allTransactions} accounts={dayBudget} onSubmit={addAccounts}/>}/>
       </Routes>
     </>
   )

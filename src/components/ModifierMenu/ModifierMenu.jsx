@@ -90,8 +90,9 @@ function ModifierMenu(props) {
                     </div>
                     <div id='from' className='flex flex-col mt-10'>
                         <label htmlFor="name">From</label>
-                        <select className='border-2 border-slate-200 px-4' onChange={(e) => handleChangeFrom(e)}  name='name'>
+                        <select className='border-2 border-slate-200 px-4' value='' onChange={(e) => handleChangeFrom(e)}  name='name'>
                                 
+                            <option value=''>Please choose the owner!</option>
                             {props.data?.map((el, index) => (
                                 
                                
